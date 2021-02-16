@@ -110,10 +110,12 @@ module.exports = {
 
       let savedUser = await createdUser.save();
 
-      res.status(200).json({
-        message: "success",
-        user: savedUser,
-      });
+      res.render("sign-up", { error: null, success: true });
+
+      // res.status(200).json({
+      //   message: "success",
+      //   user: savedUser,
+      // });
     } catch (error) {
       res.status(500).json({
         message: "error",
@@ -194,7 +196,7 @@ module.exports = {
 
       if (!foundUser) {
         res.status(404).json({
-          message: "failure",
+          message: "Sorry, user does not exists please go signup!",
         });
       } else {
         let isPasswordTrue = await bcrypt.compare(
